@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Re:Loopin 記事</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #dcdcdc);
+      color: #333;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .content {
+      line-height: 1.8;
+    }
+    .back {
+      margin-top: 3rem;
+      display: inline-block;
+      color: #007acc;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="post" class="content">読み込み中...</div>
+  <a href="index.html" class="back">← トップに戻る</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // URLから ?md=ファイル名 を取得
+    const urlParams = new URLSearchParams(window.location.search);
+    const mdFile = urlParams.get('md');
+
+    if (mdFile) {
+      fetch(mdFile)
+        .then(res => res.text())
+        .then(text => {
+          document.getElementById('post').innerHTML = marked.parse(text);
+        })
+        .catch(err => {
+          document.getElementById('post').innerHTML = '記事の読み込みに失敗しました。';
+        });
+    } else {
+      document.getElementById('post').innerHTML = '記事が指定されていません。';
+    }
+  </script>
+</body>
+</html>
