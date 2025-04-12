@@ -137,8 +137,8 @@
   <section class="section">
     <div class="section-header">
       <h2>📝 最新の記事</h2>
-      <div id="admin-button" class="admin-button" style="display: none;">
-        <a href="newpost.html" target="_blank">＋ 新規投稿</a>
+      <div class="admin-button">
+        <a href="#" onclick="checkAccess(event)">＋ 新規投稿</a>
       </div>
     </div>
     <ul class="articles" id="article-list">
@@ -166,18 +166,6 @@
     let allArticles = [];
 
     window.addEventListener('DOMContentLoaded', () => {
-      const adminButton = document.getElementById("admin-button");
-      const saved = localStorage.getItem("reloopin-auth");
-      if (saved === "ok") {
-        adminButton.style.display = "block";
-      } else {
-        const access = prompt("管理者用パスワードを入力してください：");
-        if (access === "takeloopin2025") {
-          localStorage.setItem("reloopin-auth", "ok");
-          adminButton.style.display = "block";
-        }
-      }
-
       fetch('articles.json')
         .then(res => res.json())
         .then(data => {
@@ -188,6 +176,22 @@
           document.getElementById("article-list").innerHTML = '<li>記事の読み込みに失敗しました。</li>';
         });
     });
+
+    function checkAccess(event) {
+      event.preventDefault();
+      const saved = localStorage.getItem("reloopin-auth");
+      if (saved === "ok") {
+        window.open("newpost.html", "_blank");
+        return;
+      }
+      const access = prompt("新規投稿にはパスワードが必要です。入力してください：");
+      if (access === "takeloopin2025") {
+        localStorage.setItem("reloopin-auth", "ok");
+        window.open("newpost.html", "_blank");
+      } else {
+        alert("パスワードが間違っています。");
+      }
+    }
 
     function renderLatestArticles() {
       const ul = document.getElementById("article-list");
