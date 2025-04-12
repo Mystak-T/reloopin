@@ -69,6 +69,13 @@
       border-radius: 5px;
       font-size: 0.9rem;
     }
+    .filter {
+      margin-bottom: 1rem;
+    }
+    .filter select {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
     .articles li,
     .categories li {
       list-style: none;
@@ -114,6 +121,17 @@
         <a href="newpost.html" target="_blank">＋ 新規投稿</a>
       </div>
     </div>
+    <div class="filter">
+      <label for="category-filter">カテゴリーで絞り込み：</label>
+      <select id="category-filter">
+        <option value="">すべて</option>
+        <option value="バイク・サーキット">🏍 バイク・サーキット</option>
+        <option value="FX・投資">📊 FX・投資</option>
+        <option value="化粧品づくり">🧴 化粧品づくり</option>
+        <option value="ガレージ・DIY">🛠 ガレージ・DIY</option>
+        <option value="ゲームと日常">🎮 ゲームと日常</option>
+      </select>
+    </div>
     <ul class="articles" id="article-list">
       <li>読み込み中...</li>
     </ul>
@@ -135,9 +153,10 @@
   </footer>
 
   <script>
+    let allArticles = [];
+
     window.addEventListener('DOMContentLoaded', () => {
       const adminButton = document.getElementById("admin-button");
-
       const saved = localStorage.getItem("reloopin-auth");
       if (saved === "ok") {
         adminButton.style.display = "block";
@@ -152,19 +171,30 @@
       fetch('articles.json')
         .then(res => res.json())
         .then(data => {
-          const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date));
-          const ul = document.getElementById("article-list");
-          ul.innerHTML = "";
-          sorted.slice(0, 3).forEach(article => {
-            const li = document.createElement("li");
-            li.innerHTML = `<a href="post.html?md=posts/${article.file}">${article.title}</a> <span>${article.date}</span>`;
-            ul.appendChild(li);
-          });
+          allArticles = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+          renderArticles();
         })
         .catch(err => {
           document.getElementById("article-list").innerHTML = '<li>記事の読み込みに失敗しました。</li>';
         });
+
+      document.getElementById('category-filter').addEventListener('change', renderArticles);
     });
+
+    function renderArticles() {
+      const category = document.getElementById('category-filter').value;
+      const ul = document.getElementById("article-list");
+      ul.innerHTML = "";
+      const filtered = category ? allArticles.filter(a => a.category === category) : allArticles;
+      filtered.slice(0, 3).forEach(article => {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="post.html?md=posts/${article.file}">${article.title}</a> <span>${article.date}</span>`;
+        ul.appendChild(li);
+      });
+      if (filtered.length === 0) {
+        ul.innerHTML = '<li>該当する記事はありません。</li>';
+      }
+    }
   </script>
 </body>
 </html>
