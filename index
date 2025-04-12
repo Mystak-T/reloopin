@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Re:Loopin</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #dcdcdc);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .logo-img {
+      width: 200px;
+      margin-bottom: 1rem;
+    }
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #111;
+      letter-spacing: 0.05em;
+    }
+    .logo span {
+      display: inline-block;
+      transform: rotate(-5deg);
+      margin-right: 0.2em;
+    }
+    .intro {
+      max-width: 600px;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .intro p {
+      white-space: pre-line;
+    }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Re:Loopin Logo" class="logo-img">
+    <div class="logo"><span>Re:</span>Loopin</div>
+  </header>
+  <section class="intro">
+    <p>ようこそ、日々の遊び空間「Re:Loopin」へ。
+
+ここでは、
+仕事のこと、趣味のことなど
+ちょっとした日常を綴っていきます。</p>
+  </section>
+  <footer>
+    &copy; 2025 Takemoto Satoshi
+  </footer>
+</body>
+</html>
