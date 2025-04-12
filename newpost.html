@@ -52,6 +52,13 @@
       color: #555;
       margin-top: 0.2rem;
     }
+    .section-title {
+      margin-top: 2.5rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-bottom: 1px solid #aaa;
+      padding-bottom: 0.3rem;
+    }
   </style>
 </head>
 <body>
@@ -67,12 +74,19 @@
   <input type="text" id="image" placeholder="ファイル名のみ">
   <div class="image-url-prefix">※ 画像は /reloopin/images/ に保存してね</div>
 
+  <label for="filename">記事ファイル名（例：2025-04-12-aso-bike.md）</label>
+  <input type="text" id="filename" placeholder="拡張子 .md を含めて">
+
   <label for="body">本文</label>
   <textarea id="body" rows="10" placeholder="ここに本文を書いてください"></textarea>
 
   <button onclick="generateMarkdown()">Markdownを生成</button>
 
+  <div class="section-title">✅ Markdown</div>
   <pre id="output"></pre>
+
+  <div class="section-title">✅ articles.json 用データ</div>
+  <pre id="json-output"></pre>
 
   <script>
     function generateMarkdown() {
@@ -80,11 +94,39 @@
       const date = document.getElementById('date').value;
       const image = document.getElementById('image').value;
       const body = document.getElementById('body').value;
+      const filename = document.getElementById('filename').value;
       const imagePath = `/reloopin/images/${image}`;
 
-      const md = `# ${title}\n\n📅 投稿日：${date}\n\n---\n\n## 本文\n\n${body}\n\n---\n\n## 写真・画像\n\n![画像の説明](${imagePath})\n\n---\n\n## まとめ・ひとこと\n\n（ここに感想など）`;
+      const md = `# ${title}
+
+📅 投稿日：${date}
+
+---
+
+## 本文
+
+${body}
+
+---
+
+## 写真・画像
+
+![画像の説明](${imagePath})
+
+---
+
+## まとめ・ひとこと
+
+（ここに感想など）`;
+
+      const json = {
+        title: title,
+        date: date,
+        file: filename
+      };
 
       document.getElementById('output').textContent = md;
+      document.getElementById('json-output').textContent = JSON.stringify(json, null, 2);
     }
   </script>
 </body>
