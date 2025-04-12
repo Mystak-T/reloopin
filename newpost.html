@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新規Markdown記事作成 | Re:Loopin</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+      background: #f0f0f0;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      background-color: #007acc;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    pre {
+      background: #222;
+      color: #0f0;
+      padding: 1rem;
+      white-space: pre-wrap;
+      margin-top: 2rem;
+      border-radius: 6px;
+    }
+    .image-url-prefix {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>📝 新規Markdown記事作成</h1>
+
+  <label for="title">タイトル</label>
+  <input type="text" id="title" placeholder="例：阿蘇ツーリング記録">
+
+  <label for="date">日付</label>
+  <input type="date" id="date">
+
+  <label for="image">画像ファイル名（例：bike.jpg）</label>
+  <input type="text" id="image" placeholder="ファイル名のみ">
+  <div class="image-url-prefix">※ 画像は /reloopin/images/ に保存してね</div>
+
+  <label for="body">本文</label>
+  <textarea id="body" rows="10" placeholder="ここに本文を書いてください"></textarea>
+
+  <button onclick="generateMarkdown()">Markdownを生成</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    function generateMarkdown() {
+      const title = document.getElementById('title').value;
+      const date = document.getElementById('date').value;
+      const image = document.getElementById('image').value;
+      const body = document.getElementById('body').value;
+      const imagePath = `/reloopin/images/${image}`;
+
+      const md = `# ${title}\n\n📅 投稿日：${date}\n\n---\n\n## 本文\n\n${body}\n\n---\n\n## 写真・画像\n\n![画像の説明](${imagePath})\n\n---\n\n## まとめ・ひとこと\n\n（ここに感想など）`;
+
+      document.getElementById('output').textContent = md;
+    }
+  </script>
+</body>
+</html>
