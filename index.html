@@ -136,9 +136,17 @@
 
   <script>
     window.addEventListener('DOMContentLoaded', () => {
-      const access = prompt("管理者用パスワードを入力してください：");
-      if (access === "takeloopin2025") {
-        document.getElementById("admin-button").style.display = "block";
+      const adminButton = document.getElementById("admin-button");
+
+      const saved = localStorage.getItem("reloopin-auth");
+      if (saved === "ok") {
+        adminButton.style.display = "block";
+      } else {
+        const access = prompt("管理者用パスワードを入力してください：");
+        if (access === "takeloopin2025") {
+          localStorage.setItem("reloopin-auth", "ok");
+          adminButton.style.display = "block";
+        }
       }
 
       fetch('articles.json')
