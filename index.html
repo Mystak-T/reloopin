@@ -39,9 +39,31 @@
       text-align: center;
       font-size: 1.1rem;
       line-height: 1.6;
+      margin-bottom: 3rem;
     }
     .intro p {
       white-space: pre-line;
+    }
+    .section {
+      max-width: 800px;
+      width: 100%;
+      margin-bottom: 3rem;
+    }
+    .section h2 {
+      font-size: 1.5rem;
+      border-bottom: 2px solid #aaa;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+    }
+    .articles li,
+    .categories li {
+      list-style: none;
+      margin-bottom: 0.8rem;
+    }
+    .articles li span {
+      font-size: 0.9rem;
+      color: #888;
+      margin-left: 0.5rem;
     }
     footer {
       margin-top: 3rem;
@@ -55,6 +77,7 @@
     <img src="logo.png" alt="Re:Loopin Logo" class="logo-img">
     <div class="logo"><span>Re:</span>Loopin</div>
   </header>
+
   <section class="intro">
     <p>ようこそ、日々の遊び空間「Re:Loopin」へ。
 
@@ -62,6 +85,27 @@
 仕事のこと、趣味のことなど
 ちょっとした日常を綴っていきます。</p>
   </section>
+
+  <section class="section">
+    <h2>📝 最新の記事</h2>
+    <ul class="articles">
+      <li>バイクで阿蘇へ日帰りツーリング <span>2025/04/10</span></li>
+      <li>最近ハマってるFX手法メモ <span>2025/04/05</span></li>
+      <li>自作化粧品にプラセンタ原料を追加してみた <span>2025/04/01</span></li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>📂 カテゴリー</h2>
+    <ul class="categories">
+      <li>🏍 バイク・サーキット</li>
+      <li>📊 FX・投資</li>
+      <li>🧴 化粧品づくり</li>
+      <li>🛠 ガレージ・DIY</li>
+      <li>🎮 ゲームと日常</li>
+    </ul>
+  </section>
+
   <footer>
     &copy; 2025 Takemoto Satoshi
   </footer>
