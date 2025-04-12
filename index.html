@@ -155,7 +155,7 @@
           const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date));
           const ul = document.getElementById("article-list");
           ul.innerHTML = "";
-          sorted.forEach(article => {
+          sorted.slice(0, 3).forEach(article => {
             const li = document.createElement("li");
             li.innerHTML = `<a href="post.html?md=posts/${article.file}">${article.title}</a> <span>${article.date}</span>`;
             ul.appendChild(li);
