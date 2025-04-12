@@ -13,11 +13,18 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem;
     }
     header {
+      width: 100%;
+      height: 25vh;
+      background-image: url('images/header-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      margin-bottom: 2rem;
     }
     .logo-img {
       width: 200px;
@@ -26,7 +33,7 @@
     .logo {
       font-size: 2.5rem;
       font-weight: bold;
-      color: #111;
+      color: white;
       letter-spacing: 0.05em;
     }
     .logo span {
@@ -39,7 +46,7 @@
       text-align: center;
       font-size: 1.1rem;
       line-height: 1.6;
-      margin-bottom: 3rem;
+      margin: 2rem;
     }
     .intro p {
       white-space: pre-line;
@@ -48,6 +55,7 @@
       max-width: 800px;
       width: 100%;
       margin-bottom: 3rem;
+      padding: 0 1rem;
     }
     .section-header {
       display: flex;
@@ -106,11 +114,15 @@
     #category-articles ul {
       padding-left: 1rem;
     }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Re:Loopin Logo" class="logo-img">
     <div class="logo"><span>Re:</span>Loopin</div>
   </header>
 
