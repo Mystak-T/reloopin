@@ -72,6 +72,17 @@
     .articles li a:hover {
       text-decoration: underline;
     }
+    #admin-button {
+      display: none;
+      margin-bottom: 2rem;
+    }
+    #admin-button a {
+      padding: 0.5rem 1rem;
+      background: #007acc;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
     footer {
       margin-top: 3rem;
       font-size: 0.9rem;
@@ -84,6 +95,10 @@
     <img src="logo.png" alt="Re:Loopin Logo" class="logo-img">
     <div class="logo"><span>Re:</span>Loopin</div>
   </header>
+
+  <div id="admin-button">
+    <a href="newpost.html">＋ 新規投稿</a>
+  </div>
 
   <section class="intro">
     <p>ようこそ、日々の遊び空間「Re:Loopin」へ。
@@ -116,5 +131,14 @@
   <footer>
     &copy; 2025 Takemoto Satoshi
   </footer>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const access = prompt("管理者用パスワードを入力してください：");
+      if (access === "takeloopin2025") {
+        document.getElementById("admin-button").style.display = "block";
+      }
+    });
+  </script>
 </body>
 </html>
