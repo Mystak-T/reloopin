@@ -21,7 +21,7 @@
       margin-top: 1rem;
       font-weight: bold;
     }
-    input, textarea {
+    input, textarea, select {
       width: 100%;
       padding: 0.5rem;
       margin-top: 0.3rem;
@@ -77,6 +77,15 @@
   <label for="filename">記事ファイル名（例：2025-04-12-aso-bike.md）</label>
   <input type="text" id="filename" placeholder="拡張子 .md を含めて">
 
+  <label for="category">カテゴリー</label>
+  <select id="category">
+    <option value="バイク・サーキット">🏍 バイク・サーキット</option>
+    <option value="FX・投資">📊 FX・投資</option>
+    <option value="化粧品づくり">🧴 化粧品づくり</option>
+    <option value="ガレージ・DIY">🛠 ガレージ・DIY</option>
+    <option value="ゲームと日常">🎮 ゲームと日常</option>
+  </select>
+
   <label for="body">本文</label>
   <textarea id="body" rows="10" placeholder="ここに本文を書いてください"></textarea>
 
@@ -95,6 +104,7 @@
       const image = document.getElementById('image').value;
       const body = document.getElementById('body').value;
       const filename = document.getElementById('filename').value;
+      const category = document.getElementById('category').value;
       const imagePath = `/reloopin/images/${image}`;
 
       const md = `# ${title}
@@ -122,7 +132,8 @@ ${body}
       const json = {
         title: title,
         date: date,
-        file: filename
+        file: filename,
+        category: category
       };
 
       document.getElementById('output').textContent = md;
